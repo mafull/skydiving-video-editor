@@ -1,4 +1,7 @@
 # Skydiving Video Editor
+[![macOS](https://svgshare.com/i/ZjP.svg)](https://svgshare.com/i/ZjP.svg)
+![C++](https://img.shields.io/badge/-c++-black?logo=c%2B%2B&style=social)
+
 ## What is this?
 *Honestly, I'm not entirely sure yet.*
 

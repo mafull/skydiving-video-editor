@@ -17,3 +17,5 @@
 brew install pkg-config
 pkg-config --cflags --libs libavcodec
 ```
+### Git + SSH config for multiple accounts
+* https://www.section.io/engineering-education/using-multiple-ssh-keys-for-multiple-github-accounts/
