@@ -6,7 +6,7 @@
 *Honestly, I'm not entirely sure yet.*
 
 This project is initially intended as a personal re-introduction to C++ and Object-Oriented development.
-The plan is to actively learn about some modern C++ features, video processing, etc., developing feature ideas as I go.
+The plan is to actively learn about some modern C++ features, video processing, etc., developing project ideas as I go.
 
 Longer term, I hope for the project to become a feature-rich, easy-to-use utility that actually solves a problem! 
 
@@ -41,5 +41,5 @@ tests   -> Test files
 ### Source Control Strategy
 Let's keep it simple...
 * `main` is the primary branch
-* `feature/<name>` is for developing new features
-* `bugfix/<name>` is for fixing bugs
+* `feature/<name>` for developing new features
+* `bugfix/<name>` for fixing bugs
