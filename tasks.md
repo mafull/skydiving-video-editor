@@ -17,6 +17,10 @@
   * [x] Open a video file and inspect its properties
   * [ ] Write the file out as an identical copy
 
+* [ ] Decide upon a naming convention
+  * [ ] Document it
+  * [ ] Update existing code to match
+
 * [ ] Add linting/autoformatting
   * [ ] Commit hooks?
   * [ ] Document in README
@@ -24,3 +28,5 @@
 * [ ] Add test framework
   * [ ] Write a working test
   * [ ] Document in README
+
+* [ ] Transfer all of this to GitHub issues + update README
