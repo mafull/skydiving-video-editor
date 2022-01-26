@@ -3,7 +3,7 @@
 #include <iostream>
 #include <string>
 
-// Prevent C++ name-mangling - unfortunately, FFMpeg libraries don't use an extern "C" {} themselves
+// Prevent C++ name-mangling - unfortunately, FFmpeg libraries don't use an extern "C" {} themselves
 extern "C" {
     #include <libavcodec/avcodec.h>
     #include <libavformat/avformat.h>

@@ -57,9 +57,6 @@ int main(int argc, const char* argv[])
     auto video = Video(mp4Files[0]);
     video.init();
     video.write_to("./out.mp4");
-    
-
-    // TODO: do stuff with it!
 
     return 0;
 }
