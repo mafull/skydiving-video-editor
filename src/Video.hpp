@@ -11,15 +11,17 @@ extern "C" {
 
 class Video {
 public:
-    Video(std::string filePath);
+    Video(std::string inputFilePath);
     ~Video();
     
     int init();
 
     void print_file_name();
+    int write_to(std::string outputFileName);
 
 private:
-    const std::string filePath;
-    AVFormatContext *fileContext = NULL;
-    AVStream *videoStream = NULL;
+    const std::string inputFilePath;
+    AVFormatContext *inputFormatContext = NULL;
+    AVFormatContext *outputFormatContext = NULL;
+    AVStream *inputVideoStream = NULL;
 };

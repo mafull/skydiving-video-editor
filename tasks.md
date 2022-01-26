@@ -15,7 +15,8 @@
 * [ ] Create a basic script using `FFmpeg`
   * [x] List video files in a directory
   * [x] Open a video file and inspect its properties
-  * [ ] Write the file out as an identical copy
+  * [x] Write the file out as an identical copy
+  * [ ] Ensure it's clean and documented for future reference
 
 * [ ] Decide upon a naming convention
   * [ ] Document it
