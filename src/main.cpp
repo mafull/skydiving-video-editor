@@ -13,7 +13,7 @@ namespace fs = std::filesystem;
  * Given a directory path and a file extension, find all files in the directory with that extension
  * and return a list of their file paths, sorted by ascending file path asc.
  */
-std::vector<std::string> list_files_of_extension(std::string path, std::string extension)
+std::vector<std::string> list_files_with_extension(std::string path, std::string extension)
 {
     // Get all files with the correct extension and add their to a set (which will order them)
     std::set<std::string> sortedFilePaths;
@@ -47,7 +47,7 @@ int main(int argc, const char* argv[])
     const auto directory = std::string(argv[1]);
 
     // Get all .mp4 file names in the given directory
-    auto mp4Files = list_files_of_extension(directory, ".mp4");
+    auto mp4Files = list_files_with_extension(directory, ".mp4");
     if (mp4Files.size() < 1) {
         std::cerr << "No .mp4 files in '" << directory << "'" << std::endl;
         return -1;

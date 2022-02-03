@@ -13,8 +13,8 @@ Video::~Video()
 {
     std::cout << "Destroying video instance for file: " << inputFilePath << std::endl;
     
+    // Clean up FFmpeg allocations
     avformat_close_input(&inputFormatContext);
-
     if (outputFormatContext && !(outputFormatContext->oformat->flags & AVFMT_NOFILE))
         avio_close(outputFormatContext->pb);
     avformat_free_context(outputFormatContext);
@@ -22,28 +22,26 @@ Video::~Video()
 
 int Video::init()
 {
-    if (avformat_open_input(&inputFormatContext, std::string("file:" + inputFilePath).c_str(), NULL, NULL) != 0)
-    {
+    // Attempt to open the input file and inspect it's context
+    if (avformat_open_input(&inputFormatContext, std::string("file:" + inputFilePath).c_str(), NULL, NULL) != 0) {
         fprintf(stderr, "Failed to open input file %s\n", inputFilePath.c_str());
         return -1;
     }
-    if (avformat_find_stream_info(inputFormatContext, NULL) < 0)
-    {
+    if (avformat_find_stream_info(inputFormatContext, NULL) < 0) {
         fprintf(stderr, "Failed to find stream info\n");
         return -1;
     }
 
+    // Print some information about the input file context so we can see what's going on
     av_dump_format(inputFormatContext, 0, inputFilePath.c_str(), 0);
 
+    // Find an extract video stream information
     for (unsigned i=0; i<inputFormatContext->nb_streams; i++)
-        if (inputFormatContext->streams[i]->codec->codec_type == AVMEDIA_TYPE_VIDEO) // TODO: ->codec is deprecated
-        {
+        if (inputFormatContext->streams[i]->codec->codec_type == AVMEDIA_TYPE_VIDEO) { // TODO: ->codec is deprecated
             inputVideoStream = inputFormatContext->streams[i];
             break;
         }
-
-    if (inputVideoStream == NULL)
-    {
+    if (inputVideoStream == NULL) {
         fprintf(stderr, "Failed to find a video stream\n");
         return -1;
     }
@@ -56,6 +54,11 @@ void Video::print_file_name()
     std::cout << inputFilePath << std::endl;
 }
 
+/**
+ * Log a video data packet, for debug purposes.
+ * 
+ * Copied from http://www.ffmpeg.org/doxygen/trunk/doc_2examples_2remuxing_8c-example.html
+ */
 static void log_packet(const AVFormatContext *fmt_ctx, const AVPacket *pkt, const char *tag)
 {
     AVRational *time_base = &fmt_ctx->streams[pkt->stream_index]->time_base;
@@ -69,7 +72,9 @@ static void log_packet(const AVFormatContext *fmt_ctx, const AVPacket *pkt, cons
 
 int Video::write_to(std::string outputFilePath)
 {
-    // http://www.ffmpeg.org/doxygen/trunk/doc_2examples_2remuxing_8c-example.html with adjustments following deprecations
+    /*
+    * Approach copied from http://www.ffmpeg.org/doxygen/trunk/doc_2examples_2remuxing_8c-example.html, with adjustments following deprecations.
+    */
 
     std::cout << "Writing video out to: " << outputFilePath << std::endl;
 
@@ -78,7 +83,6 @@ int Video::write_to(std::string outputFilePath)
         fprintf(stderr, "Failed to allocate output context\n");
         return -1;
     }
-
 
     for (unsigned i = 0; i < inputFormatContext->nb_streams; i++) {
         AVStream *inputStream = inputFormatContext->streams[i];
@@ -102,6 +106,8 @@ int Video::write_to(std::string outputFilePath)
         if (outputFormatContext->oformat->flags & AVFMT_GLOBALHEADER)
             outputStream->codec->flags |= AV_CODEC_FLAG_GLOBAL_HEADER;
     }
+
+    // Print some information about the input file context - we can use this as a visual sanity check
     av_dump_format(outputFormatContext, 0, outputFilePath.c_str(), 1);
 
     if (!(outputFormatContext->oformat->flags & AVFMT_NOFILE)) {
@@ -111,20 +117,24 @@ int Video::write_to(std::string outputFilePath)
         }
     }
 
+    // Write the output file header
     if (avformat_write_header(outputFormatContext, NULL) < 0) {
         fprintf(stderr, "Failed to write output file header\n");
         return -1;
     }
 
+    // Copy across the main video data, one packet at a time
     AVPacket pkt;
     while (1) {
         AVStream *inputStream, *outputStream;
-        if (av_read_frame(inputFormatContext, &pkt) < 0)
-            break;
+
+        // Read the input file packet    
+        if (av_read_frame(inputFormatContext, &pkt) < 0) break;
+        // log_packet(inputFormatContext, &pkt, "in ");
+
+        // Copy it across to the output file
         inputStream  = inputFormatContext->streams[pkt.stream_index];
         outputStream = outputFormatContext->streams[pkt.stream_index];
-        // log_packet(inputFormatContext, &pkt, "in ");
-        /* copy packet */
         pkt.pts = av_rescale_q_rnd(pkt.pts, inputStream->time_base, outputStream->time_base, (AVRounding)(AV_ROUND_NEAR_INF | AV_ROUND_PASS_MINMAX));
         pkt.dts = av_rescale_q_rnd(pkt.dts, inputStream->time_base, outputStream->time_base, (AVRounding)(AV_ROUND_NEAR_INF | AV_ROUND_PASS_MINMAX));
         pkt.duration = av_rescale_q(pkt.duration, inputStream->time_base, outputStream->time_base);
@@ -134,8 +144,12 @@ int Video::write_to(std::string outputFilePath)
             fprintf(stderr, "Failed to write packet to output file\n");
             break;
         }
+
+        // Finally, free the packet struct used for copying
         av_free_packet(&pkt);
     }
+
+    // Finish the copy and free the output file's private data
     std::cout << std::endl;
     av_write_trailer(outputFormatContext);
 

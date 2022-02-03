@@ -12,11 +12,11 @@
   * [x] Basic build + debug pipeline
   * [x] Document all of the above
 
-* [ ] Create a basic script using `FFmpeg`
+* [x] Create a basic script using `FFmpeg`
   * [x] List video files in a directory
   * [x] Open a video file and inspect its properties
   * [x] Write the file out as an identical copy
-  * [ ] Ensure it's clean and documented for future reference
+  * [x] Ensure it's clean and documented for future reference
 
 * [ ] Decide upon a naming convention
   * [ ] Document it
