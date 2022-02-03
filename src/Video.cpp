@@ -78,12 +78,12 @@ int Video::write_to(std::string outputFilePath)
 
     std::cout << "Writing video out to: " << outputFilePath << std::endl;
 
+    // Allocate output file structs and copy file context and stream info over from the input file
     avformat_alloc_output_context2(&outputFormatContext, NULL, NULL, outputFilePath.c_str());
     if (!outputFormatContext) {
         fprintf(stderr, "Failed to allocate output context\n");
         return -1;
     }
-
     for (unsigned i = 0; i < inputFormatContext->nb_streams; i++) {
         AVStream *inputStream = inputFormatContext->streams[i];
         AVStream *outputStream = avformat_new_stream(outputFormatContext, inputStream->codec->codec);
@@ -107,9 +107,10 @@ int Video::write_to(std::string outputFilePath)
             outputStream->codec->flags |= AV_CODEC_FLAG_GLOBAL_HEADER;
     }
 
-    // Print some information about the input file context - we can use this as a visual sanity check
+    // Print some information about the input file context - we can use this as a visual sanity check that it's been copied okay
     av_dump_format(outputFormatContext, 0, outputFilePath.c_str(), 1);
 
+    // Attempt to open the output file or create it if missing
     if (!(outputFormatContext->oformat->flags & AVFMT_NOFILE)) {
         if (avio_open(&outputFormatContext->pb, outputFilePath.c_str(), AVIO_FLAG_WRITE) < 0) {
             fprintf(stderr, "Failed to open output file '%s'", outputFilePath.c_str());

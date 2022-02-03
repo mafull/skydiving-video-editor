@@ -11,11 +11,11 @@ namespace fs = std::filesystem;
 
 /**
  * Given a directory path and a file extension, find all files in the directory with that extension
- * and return a list of their file paths, sorted by ascending file path asc.
+ * and return a list of their file paths, sorted by ascending file path.
  */
 std::vector<std::string> list_files_with_extension(std::string path, std::string extension)
 {
-    // Get all files with the correct extension and add their to a set (which will order them)
+    // Get all files with the correct extension and add them to a set (which will order them)
     std::set<std::string> sortedFilePaths;
     for (const auto& file : fs::directory_iterator(path)) {
         if (file.path().extension() == extension)
