@@ -22,8 +22,13 @@ Longer term, I hope for the project to become a feature-rich, easy-to-use utilit
 
 ### Requirements
 
+#### CMake
+```
+brew install cmake
+```
 #### VSCode extensions
 * [C/C++](https://marketplace.visualstudio.com/items?itemName=ms-vscode.cpptools)
+* [CMake Tools](https://marketplace.visualstudio.com/items?itemName=ms-vscode.cmake-tools)
 
 #### FFmpeg
 ```
