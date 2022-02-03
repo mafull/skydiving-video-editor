@@ -17,19 +17,29 @@ Longer term, I hope for the project to become a feature-rich, easy-to-use utilit
 
 ## Development
 
-> **NOTE:<br /> For now, this project is being developed and run solely on an M1 (Apple Silicon) MacBook Pro.<br />There is no guarantee it will work on anything else.**<br />
+> **NOTE:<br /> For now, this project is being developed and run solely on an M1 (Apple Silicon) MacBook Pro, in VS Code. There is no guarantee it will work on anything else.**<br />
 > *^ adds "Docker development environment" to  `ideas.md` ^*
 
 ### Requirements
-*Soon-to-be-updated*
+
+#### VSCode extensions
+* [C/C++](https://marketplace.visualstudio.com/items?itemName=ms-vscode.cpptools)
+
+#### FFmpeg
+```
+brew install ffmpeg
+```
 
 ### Getting started
 1. Clone the repository
     ```
     git clone https://github.com/mafull/skydiving-video-editor.git
     ```
-1. ... *Soon-to-be-updated*
-
+1. Open the repository in VS Code
+1. Update `args` within the `build` task in `launch.json` to point to a directory of your choosing<br />
+*(obviously, this is a temporary solution)*
+1. Open `main.cpp`
+1. Build and run in debug mode using `fn+F5`
 
 ### Directory structure
 ```

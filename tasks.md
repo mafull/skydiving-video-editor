@@ -5,12 +5,12 @@
   * [x] Add some initial tasks (#metatask)
   * [x] Set up directory structure and `.gitignore`
 
-* [ ] Set up local environment and IDE
+* [x] Set up local environment and IDE
   * [x] C++ compiler etc.
   * [x] IDE choice + initial setup
   * [x] First library - `FFmpeg`
   * [x] Basic build + debug pipeline
-  * [ ] Document all of the above
+  * [x] Document all of the above
 
 * [ ] Create a basic script using `FFmpeg`
   * [x] List video files in a directory

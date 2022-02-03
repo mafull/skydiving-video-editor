@@ -2,7 +2,8 @@
 *This is more of a dump of useful links and tips than well-structured references, at least for now.*
 
 ## Links
-### C++ development environment
+### C++ and development environment
+* https://docs.microsoft.com/en-us/cpp/cpp/?view=msvc-170
 * https://code.visualstudio.com/docs/cpp/config-clang-mac
 * https://github.com/microsoft/vscode-cpptools/issues/6779#issuecomment-854675319
 * https://blog.jetbrains.com/clion/2021/07/cpp-ecosystem-in-2021/
@@ -13,7 +14,7 @@
 
 ## Tips
 ```
-`brew install ffmpeg`
+brew install ffmpeg
 ```
 ```
 brew install pkg-config
