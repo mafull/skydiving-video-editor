@@ -1,0 +1,14 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        // CodeLLDB extension: https://marketplace.visualstudio.com/items?itemName=vadimcn.vscode-lldb
+        {
+            "preLaunchTask": "build",
+            "name": "Launch",
+            "type": "lldb",
+            "request": "launch",
+            "program": "${workspaceFolder}/build/run",
+            "args": ["/Users/Max.Fuller/Downloads"],
+        }
+    ]
+}

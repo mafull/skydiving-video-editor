@@ -1,0 +1,48 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		// Pre-build: create the build directory if it doesn't already exist
+		{
+			"label": "_prebuild",
+			"type": "shell",
+			"command": "mkdir -p ${workspaceFolder}/build",
+			"problemMatcher": [],
+			"group": "none"
+        },
+		// Build
+		{
+			"dependsOn": "_prebuild",
+			"label": "build",
+			"type": "cppbuild",
+			"command": "/usr/bin/clang++",
+			"args": [
+				"-mcpu=apple-m1",
+				"--target=arm64-apple-darwin21.1.0",
+				"--std=c++20",
+				"-stdlib=libc++",
+				"-fdiagnostics-color=always",
+				"-g",
+				"${workspaceFolder}/src/*.cpp",
+				"-o",
+				"${workspaceFolder}/build/run",
+				// Additional libs
+				"-I/opt/homebrew/include",
+				"-L/opt/homebrew/lib",
+				// FFmpeg
+				"-lavcodec",
+				"-lavformat",
+			],
+			"options": {
+				"cwd": "${workspaceFolder}"
+			},
+			"problemMatcher": [
+				"$gcc"
+			],
+			"group": {
+				"kind": "build",
+				"isDefault": true
+			},
+			"detail": "compiler: /usr/bin/clang++"
+		}
+	]
+}

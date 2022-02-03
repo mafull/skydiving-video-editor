@@ -5,17 +5,22 @@
   * [x] Add some initial tasks (#metatask)
   * [x] Set up directory structure and `.gitignore`
 
-* [ ] Set up local environment and IDE
-  * [ ] C++ compiler etc.
-  * [ ] IDE choice + initial setup
-  * [ ] First library - `FFmpeg`
-  * [ ] Basic build + debug pipeline
-  * [ ] Document all of the above
+* [x] Set up local environment and IDE
+  * [x] C++ compiler etc.
+  * [x] IDE choice + initial setup
+  * [x] First library - `FFmpeg`
+  * [x] Basic build + debug pipeline
+  * [x] Document all of the above
 
-* [ ] Create a basic script using `FFmpeg`
-  * [ ] List video files in a directory
-  * [ ] Open a video file and inspect its properties
-  * [ ] Write the file out as an identical copy
+* [x] Create a basic script using `FFmpeg`
+  * [x] List video files in a directory
+  * [x] Open a video file and inspect its properties
+  * [x] Write the file out as an identical copy
+  * [x] Ensure it's clean and documented for future reference
+
+* [ ] Decide upon a naming convention
+  * [ ] Document it
+  * [ ] Update existing code to match
 
 * [ ] Add linting/autoformatting
   * [ ] Commit hooks?
@@ -24,3 +29,5 @@
 * [ ] Add test framework
   * [ ] Write a working test
   * [ ] Document in README
+
+* [ ] Transfer all of this to GitHub issues + update README
