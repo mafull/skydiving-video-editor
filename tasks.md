@@ -19,8 +19,8 @@
   * [x] Ensure it's clean and documented for future reference
 
 * [ ] Configure initial CMake pipeline
-  * [ ] Learn CMake fundamentals
-  * [ ] Get configuration and build working
+  * [x] Learn CMake fundamentals
+  * [x] Get configuration and build working
   * [ ] Document it
 
 * [ ] Consider building 3rd party libraries from source via git submodule + CMake ([guide](https://www.youtube.com/watch?v=ED-WUk440qc&list=PLalVdRk2RC6o5GHu618ARWh0VO0bFlif4&index=3))
