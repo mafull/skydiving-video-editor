@@ -22,8 +22,13 @@ Longer term, I hope for the project to become a feature-rich, easy-to-use utilit
 
 ### Requirements
 
+#### CMake
+```
+brew install cmake
+```
 #### VSCode extensions
 * [C/C++](https://marketplace.visualstudio.com/items?itemName=ms-vscode.cpptools)
+* [CMake Tools](https://marketplace.visualstudio.com/items?itemName=ms-vscode.cmake-tools)
 
 #### FFmpeg
 ```
@@ -31,15 +36,23 @@ brew install ffmpeg
 ```
 
 ### Getting started
-1. Clone the repository
-    ```
-    git clone https://github.com/mafull/skydiving-video-editor.git
-    ```
-1. Open the repository in VS Code
-1. Update `args` within the `build` task in `launch.json` to point to a directory of your choosing<br />
-*(obviously, this is a temporary solution)*
-1. Open `main.cpp`
-1. Build and run in debug mode using `fn+F5`
+Ensure all requirements are met before following this.
+```
+git clone https://github.com/mafull/skydiving-video-editor.git
+cd skydiving-video-editor
+
+# Build the project
+./scripts/configure
+./scripts/build
+
+# Run it
+./scripts/run <directory_to_search_for_video_files>
+```
+
+#### VS Code's CMake Tools
+This extension will automatically re-run `cmake` whenever you save a change to CMakelists.txt.
+
+You can trigger a build by clicking `Build` on the bottom task bar, or from the extension itself.
 
 ### Directory structure
 ```
