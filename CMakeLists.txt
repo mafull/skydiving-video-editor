@@ -4,7 +4,7 @@ cmake_minimum_required(VERSION 3.22.1)
 
 set(CMAKE_CXX_STANDARD 20)
 if(APPLE)
-    set(CMAKE_OSX_ARCHITECTURES "arm64")
+    set(CMAKE_OSX_ARCHITECTURES "arm64") # Required for M1 (Apple Silicon) MacBooks
 endif()
 
 # ---------------------- Configure the actual project ----------------------
@@ -36,7 +36,7 @@ add_executable(${PROJECT_NAME}
 
 # Configure includes
 target_include_directories(${PROJECT_NAME}
-    PRIVATE "${HOMEBREW_INCLUDE_DIR}" # TODO perhaps not ideal to do this alongside find_library()
+    PRIVATE ${HOMEBREW_INCLUDE_DIR} # TODO perhaps not ideal to do this alongside find_library()
 )
 
 # Configure libraries

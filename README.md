@@ -36,15 +36,18 @@ brew install ffmpeg
 ```
 
 ### Getting started
-1. Clone the repository
-    ```
-    git clone https://github.com/mafull/skydiving-video-editor.git
-    ```
-1. Open the repository in VS Code
-1. Update `args` within the `build` task in `launch.json` to point to a directory of your choosing<br />
-*(obviously, this is a temporary solution)*
-1. Open `main.cpp`
-1. Build and run in debug mode using `fn+F5`
+Ensure all requirements are met before following this.
+```
+git clone https://github.com/mafull/skydiving-video-editor.git
+cd skydiving-video-editor
+
+# Build the project
+./scripts/configure
+./scripts/build
+
+# Run it
+./scripts/run <directory_to_search_for_video_files>
+```
 
 ### Directory structure
 ```
