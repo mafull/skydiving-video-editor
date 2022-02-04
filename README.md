@@ -49,6 +49,11 @@ cd skydiving-video-editor
 ./scripts/run <directory_to_search_for_video_files>
 ```
 
+#### VS Code's CMake Tools
+This extension will automatically re-run `cmake` whenever you save a change to CMakelists.txt.
+
+You can trigger a build by clicking `Build` on the bottom task bar, or from the extension itself.
+
 ### Directory structure
 ```
 scripts -> Utilities for development/deployment
