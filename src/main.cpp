@@ -56,7 +56,7 @@ int main(int argc, const char* argv[])
     // Open the first file and copy it to the CWD
     auto video = Video(mp4Files[0]);
     video.init();
-    video.write_to("./out.mp4");
+    video.write_to("file:./out.mp4");
 
     return 0;
 }

@@ -31,11 +31,10 @@ public:
      * 
      * If the file already exists, it will be overwritten; else it will be created before writing.
      */
-    int write_to(std::string outputFileName);
+    int write_to(std::string outputUrl);
 
 private:
     const std::string inputFilePath;
     AVFormatContext *inputFormatContext = NULL;
     AVFormatContext *outputFormatContext = NULL;
-    AVStream *inputVideoStream = NULL;
 };
